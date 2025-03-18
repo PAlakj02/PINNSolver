@@ -3,19 +3,19 @@
 ## 📌 Project Overview
 This project leverages **Physics-Informed Neural Networks (PINNs)** to solve the **time-dependent Schrödinger equation**, a fundamental equation in quantum mechanics. Unlike traditional numerical methods (finite difference, finite element), PINNs offer a **mesh-free**, **differentiable**, and **computationally efficient** approach by embedding the physics of the problem into the neural network loss function.  
 
-We compare the performance of a **standard Neural Network (NN)** with a **PINN-based model** to highlight the advantages of PINNs in solving differential equations.
+We compare the performance of a **standard Neural Network (NN)** with a **PINN-based model** and evaluate different training approaches to highlight the advantages of PINNs in solving differential equations.
 
 ---
 
-## 📖 Table of Contents
+## 📚 Table of Contents
 - [📌 Project Overview](#-project-overview)
 - [📊 Mathematical Formulation](#-mathematical-formulation)
 - [🛠 Model Architecture](#-model-architecture)
 - [🚀 Implementation](#-implementation)
-- [📈 Results & Visualizations](#-results--visualizations)
+- [📈 Results & Approaches](#-results--approaches)
 - [🔍 Dependencies & Setup](#-dependencies--setup)
 - [🔬 Future Improvements](#-future-improvements)
-- [📜 References](#-references)
+- [📝 References](#-references)
 
 ---
 
@@ -63,9 +63,9 @@ where:
 
 ### **🔹 Tools & Libraries**
 - 🟢 **TensorFlow / PyTorch** - Neural Network Training  
-- 📊 **Matplotlib** - Graphing and Visualization  
+- 📈 **Matplotlib** - Graphing and Visualization  
 - 🔢 **NumPy** - Numerical Computations  
-- 📖 **Jupyter Notebook** - Code Development  
+- 📚 **Jupyter Notebook** - Code Development  
 
 ### **🔹 Workflow**
 1️⃣ **Data Preparation**  
@@ -73,24 +73,28 @@ where:
    - Load wave function dataset  
    - Generate training & test sets  
 
-2️⃣ **Train Standard NN**  
-   - Predict \( \psi(x,t) \) using purely data-driven approach  
+2️⃣ **Two Training Approaches Tested**  
+   - **First Approach (Rejected)**: Trained NN first, then used PINN, but results were unstable  
+   - **Second Approach (Final Choice)**: Generated dataset → Trained NN → Trained PINN → Evaluated results  
 
-3️⃣ **Train PINN**  
-   - Introduce physics loss function  
-   - Train using automatic differentiation  
-
-4️⃣ **Evaluate & Compare**  
+3️⃣ **Evaluate & Compare**  
    - Loss curves, visualizations, and MSE comparison  
 
 ---
 
-## 📈 Results & Visualizations
-📌 **Model Performance**  
-- **Training Loss**: PINN shows superior convergence  
-- **Predicted vs. True Wave Function**: PINN maintains **physical consistency**, unlike NN  
+## 📈 Results & Approaches
 
-📊 **Comparison of MSE Loss**  
+### **🔹 Comparison of Training Approaches**
+| Approach  | Description | Performance |
+|-----------|------------|-------------|
+| **First Approach** | Train NN first, then PINN | High errors, unstable predictions |
+| **Second Approach** | Generate dataset → Train NN → Train PINN | Lower MSE, better convergence |
+
+### **🔹 Model Performance**
+- **Training Loss**: PINN showed superior convergence  
+- **Predicted vs. True Wave Function**: PINN maintained **physical consistency**, unlike NN  
+
+🔍 **MSE Loss Comparison**  
 | Model  | MSE Loss |
 |--------|---------|
 | **NN**  | 0.01026 |
@@ -106,3 +110,27 @@ where:
 📌 Install required libraries using:  
 ```bash
 pip install numpy matplotlib torch tensorflow
+```
+📌 Run the Jupyter notebook:
+```bash
+jupyter notebook
+```
+
+---
+
+## 🔬 Future Improvements
+✅ **Improve Loss Function**: Fine-tune balance between physics & data loss  
+✅ **Expand to Multi-Dimensional Systems**: Solve higher-order PDEs  
+✅ **Regularization Techniques**: Prevent overfitting & training instability  
+
+---
+
+## 📝 References
+- **Original Research Paper on PINNs**: [Raissi et al., 2019](https://arxiv.org/abs/1711.10561)  
+- **Physics-Informed Machine Learning**: [DeepXDE Documentation](https://deepxde.readthedocs.io/en/latest/)  
+
+---
+
+🚀 **Developed by [Your Name]**  
+🔗 **GitHub Repository**: [GitHub Link]
+
